@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Southwest Franchise Records Archive</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: #171203;
+    color: #f0e6cf;
+    max-width: 640px;
+    margin: 60px auto;
+    padding: 0 20px;
+    line-height: 1.6;
+  }
+  h1 {
+    border-bottom: 3px solid #d4a017;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+    color: #d4a017;
+  }
+  .archive-box {
+    background: #221a08;
+    border: 1px solid #4a3a12;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  input {
+    padding: 8px;
+    width: 70%;
+    font-size: 16px;
+    background: #0f0c03;
+    color: #f0e6cf;
+    border: 1px solid #4a3a12;
+  }
+  button {
+    padding: 8px 16px;
+    font-size: 16px;
+    background: #d4a017;
+    color: #171203;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  #flagOutput {
+    margin-top: 20px;
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #6fbf73;
+  }
+  #wrongMsg {
+    margin-top: 10px;
+    color: #e0544c;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<h1>Southwest Franchise Records Archive</h1>
+
+<p>This archive tracks real businesses that have doubled as fictional
+storefronts on screen. Records are restricted to visitors who can
+correctly name the real chain behind this location.</p>
+
+<div class="archive-box">
+  <p><strong>Access question:</strong><br>
+  On screen, this Albuquerque storefront is a fried-chicken chain run
+  by a very dangerous businessman. In real life it's a working
+  restaurant with a completely different menu and a completely
+  different name. What is the REAL chain's name?</p>
+
+  <input type="text" id="answerBox" placeholder="Type your answer here">
+  <button onclick="checkAnswer()">Unlock Record</button>
+
+  <p id="wrongMsg">Not quite &mdash; remember, the sign on screen and
+  the sign in real life aren't the same.</p>
+  <p id="flagOutput"></p>
+</div>
+
+<script>
+function normalize(s) {
+  return s.toLowerCase().replace(/[^a-z0-9]/g, "");
+}
+
+function checkAnswer() {
+  var userAnswer = normalize(document.getElementById("answerBox").value);
+  var correct = "twisters";
+  var wrongMsg = document.getElementById("wrongMsg");
+  var flagOutput = document.getElementById("flagOutput");
+
+  if (userAnswer === correct) {
+    wrongMsg.style.display = "none";
+    var encoded = "Q1RGe3R3MXN0M3JzX24wdF9wMGxsMHN9";
+    flagOutput.innerHTML = "Record unlocked. Flag: " + atob(encoded);
+  } else {
+    wrongMsg.style.display = "block";
+    flagOutput.innerHTML = "";
+  }
+}
+</script>
+
+</body>
+</html>
